@@ -71,13 +71,4 @@ export const actions = {
 
     commit('update', {user: user.payload || {}})
 
-    let menuResources = await this.$axios.$get(
-      `/deepexi-permission/api/v2/apps/service/userResource`
-    )
-    if (menuResources && menuResources.payload) {
-      commit('update', {
-        menuList: menuResources.payload
-      })
-    }
-  }
-}
+    let menuResources = await t
