@@ -1,19 +1,18 @@
 #!/bin/bash
+set -e
+
 cd `dirname $0`
+echo "检查yarn"
 
-img_mvn="maven:3.3.3-jdk-8"                 # docker image of maven
-m2_cache=~/.m2                              # the local maven cache dir
-proj_home=$PWD                              # the project root dir
+if ! which yarn -v &> /dev/null ;then
+  echo "安装yarn"
+  npm i -g yarn
+fi
 
-git pull  # should use git clone https://name:pwd@xxx.git
+echo "build project"
+yarn --frozen-lockfile && yarn build
 
-echo "use docker maven"
-docker run --rm \
-   -v $m2_cache:/root/.m2 \
-   -v $proj_home:/usr/src/mymaven \
-   -w /usr/src/mymaven $img_mvn mvn clean package -U -Dmaven.test.skip=true
-
-mv $proj_home/deepexi-pay-center-provider/target/deepexi-pay-center-provider-*.jar $proj_home/deepexi-pay-center-provider/target/demo.jar
-
-echo "构建镜像"
-docker build -t $APP_NAME:v$VERSION .
+echo "压缩项目"
+cd dist
+tar -czf ../$APP_NAME-v$VERSION.tar.gz .
+cd ..
