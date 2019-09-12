@@ -3,4 +3,4 @@ FROM fabric8/java-jboss-openjdk8-jdk
 
 USER root
 
-COPY deepexi-pay-center-provider/target/demo.jar /home/
+COPY pay-provider/target/demo.jar /home/

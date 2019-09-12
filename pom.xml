@@ -10,14 +10,14 @@
 		<version>1.1.7-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.deepexi</groupId>
-	<artifactId>deepexi-pay-center</artifactId>
+	<groupId>com</groupId>
+	<artifactId>pay</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>deepexi-pay-center-api</module>
-		<module>deepexi-pay-center-provider</module>
+		<module>pay-api</module>
+		<module>pay-provider</module>
 	</modules>
 
 	<build>
